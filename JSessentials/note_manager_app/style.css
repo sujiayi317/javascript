@@ -105,7 +105,9 @@ header #search-note input{
 }
 
 #hide-list input[type='checkbox'] {
+    /* display: none; */
     display: none;
+
 }
 
 form#add{

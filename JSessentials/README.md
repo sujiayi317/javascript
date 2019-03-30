@@ -1,8 +1,8 @@
-# javascripte essentials
+# javascript essentials
 
-## javascripte syntax, variable, data types operators, type coercion, conditional statements ...
+## javascript syntax, variable, data types operators, type coercion, conditional statements ...
 
-# javascripte intermediate level
+# javascript intermediate level
 
 ## functions, arrays, objects, loops, date object, application(digital clock project)
 
@@ -12,3 +12,7 @@
 
 # DOM Document Object Model
 ## manipulate on individual or multiple elements, DOM styles, DOM classes, events, get/set attributes, DOM navigation, note manager app
+
+# javascript advanced level
+
+## everything is an Object, function constructor, object function, prototypal inheritance, first class functions, IIFE, closures and call()/apply()/bind()

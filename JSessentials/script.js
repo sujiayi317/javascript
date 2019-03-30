@@ -492,7 +492,9 @@ per1.getFullName();                              // Nick Doe
 
 // DOM is neither part of HTML nor part of JavaScript
 
-// querySelector('selector')
+// the following is for note_manager_app
+
+// querySelector('selector') ---------------------------------------------
 // return the first element that matches a specified CSS selector in the document
 // String argument always must follow CSS syntax
 
@@ -503,19 +505,502 @@ per1.getFullName();                              // Nick Doe
 //el.querySelector('p .fa-times')
 
 
-// getElementsByClassName('class')
+// getElementsByClassName('class') ----------------------------------
 // returns a collection of all elements in the document with specified class name
-// collection is not an array
+// HTMLCollection is not an array
 
 //let icons = document.getElementsByClassName('fa')
 //icons[0]
 
-let icons = document.getElementsByClassName('fa');
+// let icons = document.getElementsByClassName('fa');
 
-for(let i = 0; i < icons.length; i++) {
-    console.log(icons[i]);
+// for(let i = 0; i < icons.length; i++) {
+//     console.log(icons[i]);
+// }
+
+// Array.from() ----------------------------------------------------
+// create an array from an array-like object -- eg. html collection
+// let iconsArr = Array.from(icons);
+// console.log(iconsArr);
+// console.log(icons);
+
+// iconsArr.push('Hello');
+
+
+// an array method:
+// forEach() method executes a provided function once for each array element
+
+// let icons = document.getElementsByClassName('fa');
+
+// Array.from(icons).forEach(function(icon, index, arr) {
+//     console.log(icon, index, arr);
+// })
+
+
+// getElementsByTagName('tag') ---------------------------------------------
+// returns a collection of all elements in the document with the tag name
+// returns HTMLcollection
+
+// let lis = document.getElementsByTagName('li');
+// console.log(lis);
+
+
+
+// querySelectorAll('selector') ---------------------------------------------
+// returns all elements in the document that matches a specified CSS selector
+// you can select multiple elements with multiple selectors separated by commas
+// returns NodeList, which can use .forEach() method without transforming to array
+// best practice is to transform to array
+
+// let lis = document.querySelectorAll('li, h2, #hide-list');
+// console.log(lis);
+
+// {/* <NodeList length="5">
+// <h2>Note Manager</h2>
+// <li>...</li>
+// <li>...</li>
+// <li>...</li>
+// <div id="hide-list">...</div>
+// </NodeList> */}
+
+// Array.from(lis).forEach(function(li) {
+//     console.log(li);
+//     li.textContent('Hello there')
+// });
+
+
+// // change css properties easily
+// let h2 = document.querySelector('header h2');        // <h2>Note Manager</h2>
+// h2.style.color = 'red';
+// h2.style.backgroundColor = 'green';          // background-color is invalid here, so use camal case
+
+// let lis = document.querySelectorAll('ul li');
+// lis[1].style.backgroundColor = 'red';
+
+// // to change all 3 list items to blue background
+// for( let i = 0; i< lis.length; i++) {
+//     lis[i].style.backgroundColor = 'blue'
+// }
+
+// // cssText property allows us to change multiple style elements, it will remove all the default
+// // inline styles 
+// lis[0].style.cssText = 'background-color: yellow; font-size: 25px;'
+
+
+// className ---------------------------------------------------------
+// gets and sets the value of class attribute of the specified element
+// returns string value
+// let h2 = document.querySelector('header h2');
+// h2.className = 'changeBg';
+// h2.className += ' changeFt';
+// console.log(typeof h2.className)       // string
+
+
+// classList --------------------------------------------------------
+// returns the class name(s) of an element, as a DOMTokenList object (also has length property)
+// useful to add, remove and toggle CSS classes on an element
+// classList property is read-only
+
+// let h2 = document.querySelector('header h2');
+// h2.className = 'changeBg';
+// h2.classList.add('changeFt');
+// h2.classList.remove('changeBg');
+// h2.classList.toggle('changeBg');
+// console.log(h2.classList); 
+
+//------------------------------------------------------------------
+// events ----------------------------------------------------------
+// actions that happen on a web page you are programming
+// events make web pages more interactive and dynamic
+
+// the recommand way
+// let h2 = document.querySelector('header h2');
+// h2.onclick = function() {
+//     console.log('clicked');
+// }
+// h2.onmouseover = function() {
+//     console.log('Mouseover');
+// }
+
+
+// or attach events to element as attributes to events:
+// <h2 onclick="a()" onmouseover="b()">Note Manager</h2>
+// let h2 = document.querySelector('header h2');
+
+// function a() {
+//     console.log('clicked');
+// }
+// function b() {
+//     console.log('Mouseover');
+// }
+
+
+// addEventListener() ---------------------------------------------
+// attaches an event handler to the specified element
+
+// let h2 = document.querySelector('header h2');
+// h2.addEventListener('click', function() {
+//     console.log('clicked');
+// });
+
+// let h2 = document.querySelector('header h2');
+// h2.addEventListener('click', a);
+// h2.addEventListener('click', b);
+// function a() {
+//     console.log('clicked a');
+// };
+// function b() {
+//     console.log('clicked b');
+// };
+
+
+// event object ---------------------------------------------------
+// when an event occurs, the event object is created
+
+// let h2 = document.querySelector('header h2');
+// h2.addEventListener('click', a);
+// function a(e) {
+//     console.log(e);
+//     console.log(e.target);           // <h2>Note Manager</h2>
+//     console.log(this);   // <h2>Note Manager</h2> because this refers to object
+// };
+
+// https://developer.mozilla.org/en-US/docs/Web/Events
+
+// addEventListener() ------------------------------------trick to pass args
+// let h2 = document.querySelector('header h2');
+// h2.addEventListener('click', function() {
+//     a(5, 10);
+// });
+// function a(x, y) {
+//     console.log(x * y);           // 50
+// };
+
+
+// event sequence ---------------------------------------------------------------------------------
+// let div = document.querySelector('div.wrapper');
+// let header = document.querySelector('header');
+// let h2 = document.querySelector('header h2');
+
+// div.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;   // from 1970 in miliseconds
+//     while(new Date() < delay) {}
+//     console.log('From div');
+// });
+// header.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;
+//     while(new Date() < delay) {}
+//     console.log('From header');
+// });
+// h2.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;
+//     while(new Date() < delay) {}
+//     console.log('From h2');
+// });
+
+// result on click：from inner elements to outer                -- "event bubbling"
+// From h2
+// From header
+// From div
+
+// the optional third param of addEventListener method is a boolean value default to false ------
+// let div = document.querySelector('div.wrapper');
+// let header = document.querySelector('header');
+// let h2 = document.querySelector('header h2');
+
+// div.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;   // from 1970 in miliseconds
+//     while(new Date() < delay) {}
+//     console.log('From div');
+// }, true);
+// header.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;
+//     while(new Date() < delay) {}
+//     console.log('From header');
+// }, true);
+// h2.addEventListener('click', function() {
+//     var delay = new Date().getTime() + 1000;
+//     while(new Date() < delay) {}
+//     console.log('From h2');
+// }, true);
+// when set to true, the sequence of event firing becomes out to inner    --"event capturing"
+// From div
+// From header
+// From h2
+
+
+// firstly, global code is executed, then it waits for events --------------------
+// let h2 = document.querySelector('header h2');
+
+// h2.addEventListener('click', function() {
+//     console.log('From click event');
+// }, true);
+
+// function a() {
+//     var delay = new Date().getTime() + 3000;
+//     while(new Date() < delay) {}
+//     console.log('from function a');
+// }
+// a();
+// console.log('Global code is executed');
+//result:
+// from function a
+// Global code is executed
+// From click event
+
+
+// getAttribute('attr') ------------------------------------------------------------
+// returns the value of the attribute with the specified name of the element
+// returns value as a string
+
+// let div = document.querySelector('div.wrapper');
+// div.getAttribute('class');  // "wrapper"
+// div.getAttribute('id');              // "null" is returned because this attr doesn't exist
+
+
+// setAttribute('attr', 'value') ----------------------------------------------------
+// sets the value of an attribute on the specified element
+// if the attribute already exists, the value will be updated
+
+// div.setAttribute('style', 'background: coral');
+// div.removeAttribute('style');
+// div.hasAttribute('style');      // false
+
+//
+// let btn = document.getElementById('add-btn');
+// let input = document.getElementById('add-input');
+
+// btn.addEventListener('click', function(e) {
+//     e.preventDefault();         // because submit btn will refresh the page thus blinking
+//     // console.log('hi there');
+//     input.setAttribute('type', 'submit');
+//     input.setAttribute('value', input.value);
+// });
+
+
+// DOM navigation -----------------------------------------------------
+
+// second list: <li id="list-item">..
+/*
+let listItem = document.getElementById("list-item");
+
+listItem.parentNode;
+listItem.parentNode.parentNode;
+listItem.parentElement;
+listItem.parentElement.style.background = 'orange';
+
+listItem.childNodes;               // returns NodeList
+listItem.children;                 // returns HtmlCollection
+
+listItem.firstChild;
+listItem.firstElementChild;        // <p>Second note</p>
+listItem.lastChild;
+listItem.lastElementChild;         // <input class="edit-note" type="text"></input>
+
+listItem.previousSibling;
+listItem.previousElementSibling;  
+*/
+
+// create new elements and add to html ducoment -------------------------
+/*
+let newEl = document.createElement('button');
+console.log(newEl);                 // <button></button>
+
+let text = document.createTextNode('Click');
+console.log(text);                  // object Text ...
+
+newEl.appendChild(text);
+newEl.setAttribute('style', 'display: block; margin: 10px auto; padding: 5px 10px; background: coral; color: #fff;');
+console.log(newEl);                 // <button>Click</button>
+
+let form = document.getElementById('add');
+// form.appendChild(newEl);                  // append to the end
+form.insertBefore(newEl, form.children[0]);  // insert before form's first child
+
+newEl.parentElement.removeChild(newEl);      // remove element
+*/
+
+// -------------------------------------- code task -----------------------------------------
+// add item
+/*
+let ul = document.querySelector('ul');
+
+document.getElementById('add-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    let addInput = document.getElementById('add-input');
+    
+    if(addInput.value !== '') {
+        let li = document.createElement('li'),
+            firstPar = document.createElement('p'),
+            secondPar = document.createElement('p'),
+            firstIcon = document.createElement('i'),
+            secondIcon = document.createElement('i'),
+            input = document.createElement('input');
+
+        firstIcon.className = "fa fa-pencil-square-o";
+        secondIcon.className = "fa fa-times";
+
+        input.className = "edit-note";
+        input.setAttribute('type', 'text');
+
+        firstPar.textContent = addInput.value;
+
+        secondPar.appendChild(firstIcon);
+        secondPar.appendChild(secondIcon);
+
+        li.appendChild(firstPar);
+        li.appendChild(secondPar);
+        li.appendChild(input);
+        ul.appendChild(li);
+        addInput.value = '';
+
+        console.log(li);
+    }
+});
+*/
+
+// hide items and unhide items from note list------------------------------
+/*
+let hideItem = document.getElementById('hide')
+
+hideItem.addEventListener('click', function() {
+    // console.log('checked');
+
+    let label = document.querySelector('label');
+    if(hideItem.checked) {
+        label.textContent = 'Unhide notes';
+        ul.style.display = 'none';
+    } else {
+        label.textContent = 'Hide notes';
+        ul.style.display = 'block';
+    }
+});
+*/
+// a search filter ---------------------------------------------------------
+/*
+let searchInput = document.querySelector('#search-note input');
+
+searchInput.addEventListener('keyup', function(e) {
+    // console.log('Key is released');
+    let searchChar = e.target.value.toUpperCase();
+    // console.log(searchChar);
+    let notes = ul.getElementsByTagName('li');       // returns a htmlcollection
+    Array.from(notes).forEach(function(note) {
+        let parText = note.firstElementChild.textContent;
+
+        if(parText.toUpperCase().indexOf(searchChar) !== -1) {
+            note.style.display = 'block';
+        } else {
+            note.style.display = 'none';
+        }
+    });
+});
+*/
+
+// ------------------------javascript advanced level -----------------------------
+// everything is an Object, function constructor, object function, prototypal inheritance, 
+// first class functions, IIFE, closures and call()/apply()/bind()
+
+// everything is an object (except primitives)
+// primitives: String, Number, Boolean, undefined, null
+// objects: Array, function, object, date ... 
+
+// array -------------------------------------
+let arrobj = [1,2,3];
+arrobj[3] = 4;
+arrobj.prop = 'Hello';    // add a property to array object
+console.log(arrobj);
+/*
+[object Array]: [1, 2, 3, 4]
+0: 1
+1: 2
+2: 3
+3: 4
+length: 4
+prop: "Hello"
+*/
+
+// function -------------------------------------
+function af() {
+    console.log('hi');
+}
+af['prop'] = 'Hi';
+
+af.obj = {
+    greet: 'Hey'
+};
+
+af.myFunc = function() {
+    console.log('Hola');
 }
 
+window;
+
+
+// create an object ----------------------------------------------
+let person1 = {};
+person1.firstname = 'John';
+person1.lastname = 'Smith';
+
+let person2 = {};
+person2.firstname = 'Nick';
+person2.lastname = 'Doe';
+
+// // regular function
+// function createPerson(firstname, lastname) {
+//     let newPerson = {};
+//     newPerson.firstname = firstname;
+//     newPerson.lastname = lastname;
+//     return newPerson;
+// }
+// var person3 = createPerson('Bob', 'Brown');
+// var person4 = createPerson('Marry', 'James');
+
+
+// function constructor (func name with capital letter)----------------------------------------------
+// is used to create the function object
+// constructs objects dynamically
+
+function Person(firstname, lastname) {
+    // let this = {};             // this happens behind the scene
+    this.firstname = firstname;
+    this.lastname = lastname;
+    // return this;
+}
+// "new" operator creates new empty object, in order to assign to it properties and methods,
+// use "this" keyword to represent new empty object.
+// without "new", the func works as regular func without return value, "this" will represent global window object
+var person3 = new Person('Bob', 'Brown');
+var person4 = new Person('Marry', 'James');
+
+console.log(person1);
+console.log(person2);
+console.log(person3);
+console.log(person4);
+
+
+// built-in function constructors ------------------------------------------------------
+// new Object(); new Date(); new Array(); new String(); new Number();
+
+let strObj = new String('Morning');
+console.log(strObj);
+console.log(typeof strObj);           // object
+
+
+// prototype inheritance -----------------------------------------------------------------
+// every object inherits properties and methods from its prototype
+// prototype itself is an object
+// when we create objects using literal or constructor notations, built-in global Object() 
+// function is called, and property __proto__ will be sent to the object
+
+let aobj = {};
+let bobj = new Object();
+
+console.log(a);
+console.log(b);
+
+Object.prototype.greet = 'hello';
 
 
 
