@@ -30,3 +30,18 @@ a1 = a1 + a2;
 a2 = a1 - a2;
 a1 = a1 + a2;
 
+
+// You can use const with for-of loops, where a fresh binding is created for each iteration:
+const arr = ['hello', 'world'];
+for (const elem of arr) {
+    console.log(elem);
+}
+// Output:
+// 'hello'
+// 'world'
+
+// In plain for loops, you must use let, however:
+for (let i=0; i<arr.length; i++) {
+    const elem = arr[i];
+    console.log(elem);
+}

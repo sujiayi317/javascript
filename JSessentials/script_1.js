@@ -1,5 +1,33 @@
 //---------------------------------- BASICS ---------------------------------
 // javascripte syntax, variable, data types operators, type coercion, conditional statements ...
+
+//• %s converts the corresponding value to a string and inserts it.
+console.log('%s %s', 'abc', 123);
+// Output:
+// abc 123
+
+//• %o inserts a string representation of an object.
+console.log('%o', {foo: 123, bar: 'abc'});
+// Output:
+// { foo: 123, bar: 'abc' }
+
+//• %j converts a value to a JSON string and inserts it.
+console.log('%j', {foo: 123, bar: 'abc'});
+// Output:
+// {"foo":123,"bar":"abc"}
+
+//• %% inserts a single %.
+console.log('%s%%', 99);
+// Output:
+// 99%
+
+console.log(JSON.stringify({first: 'Jane', last: 'Doe'}, null, 2));
+// Output:
+// {
+// "first": "Jane",
+// "last": "Doe"
+// }
+
 console.log("Hello world");
 
 let firstName = 'John';
@@ -985,8 +1013,6 @@ console.log(person4);
 
 let strObj = new String('Morning');
 console.log(strObj);
-console.log(typeof strObj);           // object
-
 
 // prototype inheritance -----------------------------------------------------------------
 // every object inherits properties and methods from its prototype
@@ -997,14 +1023,33 @@ console.log(typeof strObj);           // object
 let aobj = {};
 let bobj = new Object();
 
-console.log(a);
-console.log(b);
+console.log(aobj);
+console.log(bobj);
 
 Object.prototype.greet = 'hello';
 
+function afunc() {};
 
+// afunc.prototype
 
+// [object Object]: {constructor: function afunc() {}}
+// constructor: function afunc() {}
+// __proto__: Object
 
+function PersonConstructor(firstname, lastname) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+}
+
+PersonConstructor.prototype.getFullName = function() {
+    return this.firstname + ' ' + this.lastname;
+}
+
+let personC1 = new PersonConstructor('John', 'Smith');
+let personC2 = new PersonConstructor('Nick', 'Doe');
+
+console.log(personC1);
+console.log(personC2);
 
 
 

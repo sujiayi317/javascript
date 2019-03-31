@@ -20,4 +20,18 @@ var a2 = 10;
 a1 = a1 + a2;
 a2 = a1 - a2;
 a1 = a1 + a2;
+// You can use const with for-of loops, where a fresh binding is created for each iteration:
+var arr = ['hello', 'world'];
+for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+    var elem = arr_1[_i];
+    console.log(elem);
+}
+// Output:
+// 'hello'
+// 'world'
+// In plain for loops, you must use let, however:
+for (var i = 0; i < arr.length; i++) {
+    var elem = arr[i];
+    console.log(elem);
+}
 //# sourceMappingURL=let_vs_const.js.map
